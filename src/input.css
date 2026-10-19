@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-tema="gelap"], [data-tema="gelap"] *));
+
+/* ===== variabel tema (ubah di sini untuk ganti warna) ===== */
+:root {
+  --utama: #9a3412;      /* cokelat bata - judul & aksen utama */
+  --utama-muda: #d97706; /* amber - gradien */
+  --aksen: #ea580c;      /* oranye - tombol kecil & sorotan */
+  --latar: #fdfaf5;      /* krem terang */
+  --latar2: #fbf1e3;     /* krem gelap sedikit */
+  --kartu: #ffffff;
+  --teks: #292524;
+  --redup: #78716c;
+  --garis: #e7e0d5;
+  --tombol: #9a3412;
+  --tombol-teks: #ffffff;
+}
+[data-tema="gelap"] {
+  --utama: #fbbf24;
+  --utama-muda: #f59e0b;
+  --aksen: #fb923c;
+  --latar: #171310;
+  --latar2: #201b16;
+  --kartu: #262019;
+  --teks: #f5f0e8;
+  --redup: #a8a29e;
+  --garis: #3a322a;
+  --tombol: #fbbf24;
+  --tombol-teks: #171310;
+}
+
+@theme inline {
+  --color-utama: var(--utama);
+  --color-utama-muda: var(--utama-muda);
+  --color-aksen: var(--aksen);
+  --color-latar: var(--latar);
+  --color-latar2: var(--latar2);
+  --color-kartu: var(--kartu);
+  --color-teks: var(--teks);
+  --color-redup: var(--redup);
+  --color-garis: var(--garis);
+  --color-tombol: var(--tombol);
+  --color-tombol-teks: var(--tombol-teks);
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-latar text-teks font-sans;
+  }
+  ::selection {
+    @apply bg-aksen text-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aksen focus-visible:ring-offset-2 focus-visible:ring-offset-latar;
+  }
+  .btn-utama {
+    @apply bg-tombol text-tombol-teks shadow hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply border border-garis bg-kartu text-teks hover:border-aksen;
+  }
+  .btn-outline {
+    @apply border-2 border-white/80 text-white hover:bg-white/10;
+  }
+  .btn-ikon {
+    @apply grid h-10 w-10 place-items-center rounded-full border border-garis bg-kartu text-xl text-teks transition hover:border-aksen hover:text-aksen;
+  }
+  .nav-link {
+    @apply rounded-lg px-3 py-2 text-sm font-semibold text-redup transition hover:text-teks;
+  }
+  .nav-link.aktif {
+    @apply bg-latar2 text-utama;
+  }
+  .kicker {
+    @apply text-center text-xs font-extrabold uppercase tracking-[0.2em] text-aksen;
+  }
+  .judul {
+    @apply mt-2 text-center text-3xl font-extrabold sm:text-4xl;
+  }
+  .sub {
+    @apply mx-auto mt-3 max-w-xl text-center text-redup;
+  }
+  .isian {
+    @apply w-full rounded-xl border border-garis bg-kartu px-4 py-3 text-sm text-teks placeholder:text-redup/70 focus:border-aksen focus:outline-none focus:ring-2 focus:ring-aksen/30;
+  }
+}
+
+/* ===== utilitas khusus ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.muncul {
+  opacity: 1;
+  transform: none;
+}
+.ketik::after {
+  content: "|";
+  margin-left: 2px;
+  animation: kedip 1s steps(2) infinite;
+}
+@keyframes kedip {
+  50% {
+    opacity: 0;
+  }
+}
+.tanpa-scrollbar {
+  scrollbar-width: none;
+}
+.tanpa-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .ketik::after {
+    animation: none;
+  }
+}

@@ -1,0 +1,16 @@
+# dependensi
+node_modules/
+
+# env (jangan pernah di-commit)
+.env
+.env.*
+
+# log
+*.log
+
+# sistem
+Thumbs.db
+.DS_Store
+
+# foto asli kantin (opsional: commit jika ingin ikut online)
+# foto/

@@ -1,0 +1,16 @@
+{
+  "name": "landing-page-kantin-siswa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page UMKM Kantin Siswa (Yogyakarta) - HTML + Tailwind CSS + JavaScript",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./css/style.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
+    "check": "node --check main.js && node --check data.js && node --check scripts/security-check.cjs",
+    "security": "node scripts/security-check.cjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4",
+    "tailwindcss": "^4"
+  }
+}
