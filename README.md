@@ -12,12 +12,38 @@ Buka `index.html` langsung di browser. Semua file sudah termasuk (CSS sudah di-b
 | File | Fungsi |
 |---|---|
 | `index.html` | Halaman utama (struktur & teks) |
-| `data.js` | **Semua data usaha** — nama, WA, alamat, menu, voucher, ulasan, galeri |
-| `main.js` | Logika (keranjang, voucher, pencarian, lightbox, dsb.) |
+| `data.js` | **Semua data usaha** — nama, WA, alamat, menu, voucher, ulasan, galeri, metode pembayaran |
+| `main.js` | Logika (keranjang, voucher, pencarian, paginasi, ulasan, lightbox, dsb.) |
 | `src/input.css` | Sumber Tailwind + variabel warna tema |
 | `css/style.css` | Hasil build Tailwind (jangan diedit manual) |
 | `scripts/security-check.cjs` | Pemeriksaan keamanan (`npm run security`) |
-| `scripts/smoke-test.cjs` | Uji cepat konsistensi id/data (`node scripts/smoke-test.cjs`) |
+| `scripts/smoke-test.cjs` | Uji cepat konsistensi id/data (`npm run smoke`) |
+| `scripts/runtime-test.cjs` | Uji fungsi di browser simulasi jsdom (`npm run test:runtime`) |
+
+## Fitur utama
+
+### 1. Tambah Ulasan
+- Tombol **✍️ Tambah Ulasan** di bagian Ulasan membuka formulir (nama, rating bintang, isi ulasan).
+- Ulasan tersimpan di `localStorage` browser (*maksimal 50*), langsung tampil dengan label **"Ulasan Baru"**, dan ikut menambah rata-rata rating.
+- Centang **"Kirim juga ke WhatsApp"** agar pemilik kantin menerima ulasan lewat WA, lalu bisa disalin ke array `TESTIMONI` di `data.js` supaya tampil untuk semua pengunjung.
+
+### 2. Tampilan mobile ≠ desktop (per halaman berbeda)
+Jumlah item per halaman menyesuaikan ukuran layar, otomatis saat jendela di-resize:
+
+| Bagian | Mobile (<640px) | Tablet (640–1023px) | Desktop (≥1024px) |
+|---|---|---|---|
+| Menu | 4 per halaman | 6 per halaman | 9–12 per halaman |
+| Galeri | 4 per halaman | 6 per halaman | 6–12 per halaman |
+| Ulasan | 3 per halaman (daftar) | 4 per halaman (daftar) | carousel (‹ › + titik) |
+
+- Mobile memakai **daftar kartu** untuk ulasan, desktop memakai **carousel**.
+- Pengaturan ada di `main.js`: `PAGE_MENU`, `PAGE_GALERI`, `PAGE_ULASAN`.
+
+### 3. Metode pembayaran
+- Array `PEMBAYARAN` di `data.js`: Tunai, QRIS, GoPay, OVO, DANA, ShopeePay, Transfer Bank, Kartu Debit/Kredit. Set `aktif: false` untuk menyembunyikan.
+- Section **Metode Pembayaran** menampilkan semua metode + nomor rekening (`USAHA.rekening`).
+- Pelanggan memilih metode di keranjang; pilihan ikut terkirim ke WhatsApp (beserta nomor rekening bila memilih transfer bank).
+- Jawaban FAQ pembayaran dibuat otomatis dari `PEMBAYARAN`.
 
 ## Cara mengubah data (hanya edit `data.js`)
 
@@ -26,6 +52,7 @@ Buka `index.html` langsung di browser. Semua file sudah termasuk (CSS sudah di-b
 - **Jam buka**: `jamBuka`, `jamTutup`, `libur` (array hari, `0` = Minggu), `jadwal`.
 - **Menu**: tambah/kurangi baris di array `PRODUK`. Isi `foto` dengan `"foto/nama-file.jpg"` (taruh file di folder `foto/`) atau biarkan `""` untuk memakai emoji.
 - **Voucher**: array `VOUCHER` (`tipe: "persen"` atau `"nominal"`).
+- **Metode pembayaran**: array `PEMBAYARAN` + `rekening` di dalam `USAHA`.
 - **Ulasan & galeri**: array `TESTIMONI` dan `GALERI`.
 
 Setelah mengubah `data.js` tidak perlu build ulang. Setelah mengubah kelas Tailwind di HTML/JS, jalankan `npm run build`.
@@ -38,6 +65,8 @@ npm run build      # build css/style.css
 npm run dev        # build sambil watch
 npm run check      # cek sintaks semua JS
 npm run security   # pemeriksaan keamanan dasar
+npm run smoke      # cek konsistensi id/data
+npm run test:runtime  # uji fungsi (butuh: npm install --no-save jsdom)
 ```
 
 ## Keamanan

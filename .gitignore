@@ -14,3 +14,5 @@ Thumbs.db
 
 # foto asli kantin (opsional: commit jika ingin ikut online)
 # foto/
+.vercel
+.env*

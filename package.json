@@ -7,7 +7,9 @@
     "build": "tailwindcss -i ./src/input.css -o ./css/style.css --minify",
     "dev": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
     "check": "node --check main.js && node --check data.js && node --check scripts/security-check.cjs",
-    "security": "node scripts/security-check.cjs"
+    "security": "node scripts/security-check.cjs",
+    "smoke": "node scripts/smoke-test.cjs",
+    "test:runtime": "node scripts/runtime-test.cjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4",

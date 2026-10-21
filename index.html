@@ -30,6 +30,7 @@
         <a class="nav-link" href="#menu">Menu</a>
         <a class="nav-link" href="#galeri">Galeri</a>
         <a class="nav-link" href="#ulasan">Ulasan</a>
+        <a class="nav-link" href="#pembayaran">Pembayaran</a>
         <a class="nav-link" href="#faq">FAQ</a>
         <a class="nav-link" href="#lokasi">Lokasi</a>
       </div>
@@ -44,6 +45,7 @@
         <a class="nav-link" href="#menu">🍽️ Menu</a>
         <a class="nav-link" href="#galeri">📷 Galeri</a>
         <a class="nav-link" href="#ulasan">⭐ Ulasan</a>
+        <a class="nav-link" href="#pembayaran">💳 Pembayaran</a>
         <a class="nav-link" href="#faq">❓ FAQ</a>
         <a class="nav-link" href="#lokasi">📍 Lokasi</a>
       </div>
@@ -107,8 +109,11 @@
         <div id="kategori" class="tanpa-scrollbar flex gap-2 overflow-x-auto pb-1"></div>
       </div>
 
-      <div id="daftar-menu" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <p id="info-page" class="mt-4 text-center text-xs text-redup sm:text-left"></p>
+
+      <div id="daftar-menu" class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
       <p id="kosong" class="hidden py-10 text-center text-redup">Menu tidak ditemukan. Coba kata kunci lain 🙂</p>
+      <div id="pagination-menu" class="mt-8"></div>
     </div>
   </section>
 
@@ -119,6 +124,7 @@
       <h2 class="judul">Galeri Kantin</h2>
       <p class="sub">Klik foto untuk memperbesar.</p>
       <div id="grid-galeri" class="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3"></div>
+      <div id="pagination-galeri" class="mt-8"></div>
     </div>
   </section>
 
@@ -127,14 +133,21 @@
     <div class="mx-auto max-w-6xl">
       <p class="kicker">Kata Mereka</p>
       <h2 class="judul">Ulasan Pelanggan</h2>
+      <p class="sub">Sudah pernah pesan di sini? Bagikan pengalamanmu untuk membantu teman-teman lain memilih.</p>
+
+      <div class="mt-6 flex justify-center">
+        <button id="btn-tambah-ulasan" data-tambah-ulasan type="button" class="btn btn-utama">✍️ Tambah Ulasan</button>
+      </div>
+
       <div class="mx-auto mt-8 max-w-3xl rounded-3xl border border-garis bg-kartu p-6 shadow-sm sm:p-10">
-        <div class="flex flex-col items-center gap-6 sm:flex-row">
+        <div class="flex flex-col items-center gap-6 md:flex-row">
           <div class="rounded-2xl bg-latar2 px-6 py-4 text-center">
             <p id="ringkas-rating" class="text-4xl font-extrabold text-utama">0</p>
             <p id="ringkas-bintang" class="text-aksen">★★★★★</p>
             <p class="mt-1 text-xs text-redup">dari <span id="ringkas-jumlah"></span> ulasan</p>
           </div>
-          <div class="min-h-0 flex-1 text-center sm:text-left">
+          <!-- Tampilan desktop: carousel -->
+          <div class="hidden min-h-0 flex-1 text-center sm:text-left md:block">
             <div id="track" class="min-h-[7rem]"></div>
             <div class="mt-4 flex items-center justify-center gap-3">
               <button id="prev" class="btn-ikon" aria-label="Ulasan sebelumnya">‹</button>
@@ -143,12 +156,35 @@
             </div>
           </div>
         </div>
+
+        <!-- Tampilan mobile: daftar ulasan per halaman -->
+        <div id="ulasan-mobile" class="mt-6 md:hidden">
+          <div id="daftar-ulasan-mobile" class="space-y-3"></div>
+          <div id="pagination-ulasan" class="mt-5"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METODE PEMBAYARAN ===== -->
+  <section id="pembayaran" class="reveal bg-latar2 px-4 py-14">
+    <div class="mx-auto max-w-6xl">
+      <p class="kicker">Cara Bayar</p>
+      <h2 class="judul">Metode Pembayaran</h2>
+      <p class="sub">Pilih metode pembayaran yang paling nyaman. Pesanan tetap dikirim lewat WhatsApp, pembayaranPun dilakukan di tempat.</p>
+
+      <div id="grid-pembayaran" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+
+      <div id="info-rekening" class="mt-6 hidden rounded-2xl border border-dashed border-aksen/60 bg-kartu p-5"></div>
+
+      <div class="mt-8 flex justify-center">
+        <a data-wa target="_blank" rel="noopener" class="btn btn-utama" href="#">💬 Pesan Sekarang</a>
       </div>
     </div>
   </section>
 
   <!-- ===== FAQ ===== -->
-  <section id="faq" class="reveal bg-latar2 px-4 py-14">
+  <section id="faq" class="reveal px-4 py-14">
     <div class="mx-auto max-w-3xl">
       <p class="kicker">Tanya Jawab</p>
       <h2 class="judul">Pertanyaan Umum</h2>
@@ -166,7 +202,7 @@
             Metode pembayaran apa saja?
             <span class="transition group-open:rotate-180">▾</span>
           </summary>
-          <p class="mt-3 text-redup">Tunai di tempat, QRIS, dan transfer bank.</p>
+          <p id="faq-bayar" class="mt-3 text-redup">Tunai di tempat, QRIS, dan transfer bank.</p>
         </details>
         <details class="group rounded-2xl border border-garis bg-kartu p-4">
           <summary class="flex cursor-pointer list-none items-center justify-between font-bold">
@@ -187,7 +223,7 @@
   </section>
 
   <!-- ===== LOKASI & KONTAK ===== -->
-  <section id="lokasi" class="reveal px-4 py-14">
+  <section id="lokasi" class="reveal bg-latar2 px-4 py-14">
     <div class="mx-auto max-w-6xl">
       <p class="kicker">Datang atau Pesan</p>
       <h2 class="judul">Lokasi &amp; Kontak</h2>
@@ -289,12 +325,58 @@
           <option>Ambil di tempat</option>
           <option>Antar ke alamat</option>
         </select>
+        <div>
+          <label for="input-pembayaran" class="text-sm font-bold">💳 Metode pembayaran</label>
+          <select id="input-pembayaran" name="bayar" class="isian mt-1"></select>
+          <p id="info-pembayaran" class="mt-1 min-h-4 text-xs text-redup"></p>
+        </div>
         <textarea name="catatan" rows="2" class="isian" placeholder="Catatan (opsional: level pedas, tanpa telur, ...)" maxlength="300"></textarea>
         <button class="btn btn-utama w-full" type="submit">💬 Pesan via WhatsApp</button>
       </form>
     </div>
   </aside>
   <div id="overlay" class="pointer-events-none fixed inset-0 z-40 bg-black/50 opacity-0 transition-opacity duration-300"></div>
+
+  <!-- ===== MODAL TAMBAH ULASAN ===== -->
+  <div id="modal-ulasan" class="fixed inset-0 z-[75] hidden items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true" aria-labelledby="judul-modal-ulasan">
+    <div class="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-3xl border border-garis bg-latar p-6 shadow-2xl">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 id="judul-modal-ulasan" class="text-lg font-extrabold">✍️ Tambah Ulasan</h3>
+          <p class="mt-1 text-sm text-redup">Ulasanmu langsung tampil di daftar ulasan.</p>
+        </div>
+        <button id="tutup-ulasan" class="btn-ikon !h-9 !w-9" aria-label="Tutup formulir ulasan">✕</button>
+      </div>
+
+      <form id="form-ulasan" novalidate class="mt-5 space-y-3">
+        <div>
+          <label for="input-nama-ulasan" class="text-sm font-bold">Nama kamu</label>
+          <input id="input-nama-ulasan" name="nama" class="isian mt-1" placeholder="misal: Rina, kelas XI" maxlength="60" />
+        </div>
+        <div>
+          <span class="text-sm font-bold">Rating</span>
+          <div id="bintang-pilih" class="mt-1 flex items-center gap-1" role="radiogroup" aria-label="Pilih jumlah bintang">
+            <button type="button" data-bintang="1" class="bintang text-2xl leading-none transition" aria-label="1 bintang">★</button>
+            <button type="button" data-bintang="2" class="bintang text-2xl leading-none transition" aria-label="2 bintang">★</button>
+            <button type="button" data-bintang="3" class="bintang text-2xl leading-none transition" aria-label="3 bintang">★</button>
+            <button type="button" data-bintang="4" class="bintang text-2xl leading-none transition" aria-label="4 bintang">★</button>
+            <button type="button" data-bintang="5" class="bintang text-2xl leading-none transition" aria-label="5 bintang">★</button>
+          </div>
+          <input type="hidden" id="input-rating" name="rating" value="5" />
+        </div>
+        <div>
+          <label for="input-teks-ulasan" class="text-sm font-bold">Ulasan</label>
+          <textarea id="input-teks-ulasan" name="teks" rows="4" class="isian mt-1" placeholder="Ceritakan pengalamanmu menunya..." maxlength="500"></textarea>
+        </div>
+        <label class="flex items-start gap-2 text-sm text-redup">
+          <input type="checkbox" name="kirimWA" class="mt-1" checked />
+          <span>📨 Kirim juga ke WhatsApp pemilik kantin, supaya ulasan ikut tercatat di toko.</span>
+        </label>
+        <p id="error-ulasan" class="min-h-5 text-sm text-red-600 dark:text-red-400" role="alert"></p>
+        <button class="btn btn-utama w-full" type="submit">Kirim Ulasan</button>
+      </form>
+    </div>
+  </div>
 
   <!-- ===== LIGHTBOX GALERI ===== -->
   <div id="lightbox" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/90 p-4" role="dialog" aria-modal="true" aria-label="Foto galeri">
