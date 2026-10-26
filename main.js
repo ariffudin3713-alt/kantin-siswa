@@ -461,11 +461,11 @@ function renderMenu() {
     .map((p) => {
       const img = p.foto && p.foto.trim() !== "" ? p.foto : `https://placehold.co/600x400/F5F0E8/5A3921?text=${encodeURIComponent(p.emoji+" "+p.nama)}`;
       const bintang = "★".repeat(Math.round(p.rating||4)) + "☆".repeat(5 - Math.round(p.rating||4));
-      return `<article class="flex flex-col overflow-hidden rounded-2xl border border-garis bg-kartu shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-        <div class="relative aspect-[4/3] w-full bg-latar2">
-          <img src="${img}" alt="${escapeHtml(p.nama)}" class="h-full w-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/600x400/F5F0E8/5A3921?text=Menu+Kantin'">
-          ${p.rating?`<span class="absolute left-2 top-2 rounded-full bg-kartu/90 px-2 py-0.5 text-xs font-bold">${bintang} ${p.rating.toFixed(1)}</span>`:""}
-          ${p.terjual?`<span class="absolute right-2 top-2 rounded-full bg-kartu/90 px-2 py-0.5 text-xs font-semibold text-redup">${p.terjual}+ terjual</span>`:""}
+      return `<article class="group flex flex-col overflow-hidden rounded-2xl border border-garis bg-kartu shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+        <div class="relative aspect-[4/3] w-full overflow-hidden bg-latar2">
+          <img src="${img}" alt="${escapeHtml(p.nama)}" class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105" loading="lazy" onerror="this.src='https://placehold.co/600x400/F5F0E8/5A3921?text=Menu+Kantin'">
+          ${p.rating?`<span class="absolute left-2 top-2 rounded-full bg-kartu/90 px-2 py-0.5 text-xs font-bold shadow-sm">${bintang} ${p.rating.toFixed(1)}</span>`:""}
+          ${p.terjual?`<span class="absolute right-2 top-2 rounded-full bg-kartu/90 px-2 py-0.5 text-xs font-semibold text-redup shadow-sm">${p.terjual}+ terjual</span>`:""}
         </div>
         <div class="flex flex-1 flex-col p-4">
           <div class="flex items-start justify-between gap-2">
@@ -735,8 +735,11 @@ function renderGaleri() {
     .map((g, i) => {
       const img = g.foto && g.foto.trim() !== "" ? g.foto : `https://placehold.co/600x600/F5F0E8/5A3921?text=${encodeURIComponent(g.emoji||"📷")}`;
       const idx = mulai + i;
-      return `<button class="group overflow-hidden rounded-2xl" data-lightbox data-i="${idx}" aria-label="Lihat foto ${idx+1}">
-      <img src="${img}" alt="${escapeHtml(g.alt||"Foto galeri")}" class="h-44 w-full object-cover transition group-hover:scale-105" loading="lazy" onerror="this.src='https://placehold.co/600x600/F5F0E8/5A3921?text=Galeri'">
+      return `<button class="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-garis/60 transition hover:-translate-y-0.5 hover:shadow-md" data-lightbox data-i="${idx}" aria-label="Lihat foto ${idx+1}">
+      <div class="aspect-square w-full overflow-hidden bg-latar2">
+        <img src="${img}" alt="${escapeHtml(g.alt||"Foto galeri")}" class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105" loading="lazy" onerror="this.src='https://placehold.co/600x600/F5F0E8/5A3921?text=Galeri'">
+      </div>
+      <span class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent px-3 py-2 text-left text-xs font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">${escapeHtml(g.alt||"Foto galeri")}</span>
     </button>`;
     })
     .join("");
