@@ -165,7 +165,7 @@ const PEMBAYARAN = [
     emoji: "🟢",
     ket: "Bayar saldo GoPay lewat aplikasi Gojek atau GoPay.",
     catatan: "Tersedia juga GoPayLater / PayLater untuk pesan di atas Rp 50.000.",
-    aktif: true,
+    aktif: false,
   },
   {
     id: "ovo",
@@ -173,7 +173,7 @@ const PEMBAYARAN = [
     emoji: "🟣",
     ket: "Bayar saldo OVO, termasuk OVO Points.",
     catatan: "Scan QR OVO kasir, saldo dipotong otomatis.",
-    aktif: true,
+    aktif: false,
   },
   {
     id: "dana",
@@ -181,7 +181,7 @@ const PEMBAYARAN = [
     emoji: "🔵",
     ket: "Bayar saldo DANA atau kartu debit terhubung.",
     catatan: "Pastikan nama akun DANA sesuai saat verifikasi kasir.",
-    aktif: true,
+    aktif: false,
   },
   {
     id: "shopeepay",
@@ -189,7 +189,7 @@ const PEMBAYARAN = [
     emoji: "🟠",
     ket: "Bayar saldo ShopeePay dari aplikasi Shopee.",
     catatan: "Tunjukkan kode QR pembayaran ke kasir.",
-    aktif: true,
+    aktif: false,
   },
   {
     id: "bank",
@@ -197,7 +197,7 @@ const PEMBAYARAN = [
     emoji: "🏦",
     ket: "Transfer ke virtual account BCA, BRI, Mandiri, atau BNI.",
     catatan: "Kirim bukti transfer ke kasir agar pesanan langsung diproses.",
-    aktif: true,
+    aktif: false,
   },
   {
     id: "kartu",
@@ -205,7 +205,7 @@ const PEMBAYARAN = [
     emoji: "💳",
     ket: "Terima Visa dan Mastercard (BCA, Mandiri, BNI).",
     catatan: "Tersedia mesin EDC di kasir.",
-    aktif: true,
+    aktif: false,
   },
 ];
 

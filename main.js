@@ -1461,9 +1461,10 @@ function renderPembayaran() {
 
   // info rekening bank (kalau ada)
   const rek = USAHA.rekening || [];
+  const transferTersedia = list.some((p) => p.id === "bank");
   const info = $("#info-rekening");
   if (info) {
-    if (rek.length) {
+    if (transferTersedia && rek.length) {
       info.classList.remove("hidden");
       info.innerHTML = `<p class="font-display text-sm font-extrabold">🏦 Nomor rekening untuk transfer bank</p>
         <div class="mt-3 grid gap-2 sm:grid-cols-2">

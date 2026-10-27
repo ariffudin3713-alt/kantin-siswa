@@ -49,9 +49,8 @@ Jumlah item per halaman menyesuaikan ukuran layar, otomatis saat jendela di-resi
 - Pengaturan ada di `main.js`: `PAGE_MENU`, `PAGE_GALERI`, `PAGE_ULASAN`.
 
 ### 3. Metode pembayaran
-- Array `PEMBAYARAN` di `data.js`: Tunai, QRIS, GoPay, OVO, DANA, ShopeePay, Transfer Bank, Kartu Debit/Kredit. Set `aktif: false` untuk menyembunyikan.
-- Section **Metode Pembayaran** menampilkan semua metode + nomor rekening (`USAHA.rekening`).
-- Pelanggan memilih metode di keranjang; pilihan ikut terkirim ke WhatsApp (beserta nomor rekening bila memilih transfer bank).
+- Metode yang aktif saat ini: Tunai dan QRIS. Metode lain di array `PEMBAYARAN` disembunyikan dengan `aktif: false`.
+- Pelanggan memilih Tunai atau QRIS di keranjang; pilihan ikut terkirim ke WhatsApp.
 - Jawaban FAQ pembayaran dibuat otomatis dari `PEMBAYARAN`.
 
 ## Cara mengubah data (hanya edit `data.js`)
