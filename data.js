@@ -7,6 +7,7 @@ const USAHA = {
   nama: "Kantin Siswa",
   jenis: "Kantin",
   kota: "Yogyakarta",
+  tagline: "Jajan enak, harga bersahabat. Pesan dulu, tinggal ambil pas istirahat — nggak perlu ikut antre panjang.",
 
   // ⚠️ GANTI dengan nomor WhatsApp asli. Format: 628xxx (tanpa + dan tanpa 0 di depan)
   wa: "6281229265630",
@@ -26,7 +27,12 @@ const USAHA = {
 
   jamBuka: 7, // jam buka (0-23)
   jamTutup: 16, // jam tutup (0-23)
-  libur: [0], // hari libur (0 = Sabtu || Minggu, 1 = Senin, ...)
+  libur: [0, 6], // hari libur (0 = Minggu, 6 = Sabtu, 1 = Senin, ...)
+  // Jam istirahat sekolah — dipakai untuk indikator status "Buka / Jam Pelajaran"
+  istirahat: [
+    { nama: "Jam Istirahat 1", mulai: "09:30", selesai: "09:50" },
+    { nama: "Jam Istirahat 2", mulai: "12:00", selesai: "12:20" },
+  ],
   jamText: "Senin–Jumat, 07.00–16.00",
   jadwal: [
     { hari: "Senin – Jumat", jam: "07.00 – 16.00" },
@@ -99,6 +105,32 @@ const PRODUK = [
   { id: "susu-hangat", nama: "Susu Hangat", kategori: "Minuman Hangat", harga: 4000, deskripsi: "Susu hangat lembut, favorit anak & pelajar.", emoji: "🥛", foto: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800&q=80&auto=format&fit=crop", rating: 4.8, terjual: 175 },
   { id: "jahe-hangat", nama: "Wedang Jahe Hangat", kategori: "Minuman Hangat", harga: 4000, deskripsi: "Wedang jahe hangat, menghangatkan tubuh.", emoji: "🫚", foto: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=800&q=80&auto=format&fit=crop", rating: 4.9, terjual: 165 },
 ];
+
+// ===== BADGE MENU =====
+// Label kecil yang bikin menu langsung menarik perhatian. Warna tersedia:
+// favorit (kuning), viral (oranye), pedes (merah), segar (hijau), hemat (ungu), hangat (pink).
+// Menu yang tidak punya badge akan otomatis dapat label sesuai kategorinya.
+const BADGE_MENU = {
+  "nasi-goreng": { teks: "⭐ Favorit Kakak Kelas", warna: "favorit" },
+  "ayam-geprek": { teks: "🌶️ Pedes Nampol", warna: "pedes" },
+  "mie-setan": { teks: "🌶️ Pedes Nampol", warna: "pedes" },
+  "nasi-ayam-bakar": { teks: "🔥 Lagi Viral", warna: "viral" },
+  "nasi-rames": { teks: "💰 Ramah Kantong", warna: "hemat" },
+  "soto-ayam": { teks: "🍜 Hangat Mengenyangkan", warna: "hangat" },
+  "mie-ayam": { teks: "🍜 Favorit Kakak Kelas", warna: "favorit" },
+  "pisang-goreng": { teks: "🍌 Best Seller", warna: "favorit" },
+  "tempe-mendoan": { teks: "🫶 Camilan Andalan", warna: "segar" },
+  "batagor": { teks: "🥜 Bumbu Juara", warna: "viral" },
+  "cireng": { teks: "🌶️ Pedas Nagih", warna: "pedes" },
+  "roti-bakar": { teks: "🍫 Manis Nagih", warna: "hangat" },
+  "es-teh": { teks: "🥤 Segar & Dingin", warna: "segar" },
+  "es-jeruk": { teks: "🍊 Fresh Peras Asli", warna: "segar" },
+  "es-dawet": { teks: "🥥 Segar & Dingin", warna: "segar" },
+  "kopi-susu": { teks: "🔥 Lagi Viral", warna: "viral" },
+  "thai-tea": { teks: "🔥 Lagi Viral", warna: "viral" },
+  "es-coklat": { teks: "🍫 Manisnya Pas", warna: "hangat" },
+  "teh-hangat": { teks: "☕ Hangat Murah", warna: "hemat" },
+};
 
 // ===== VOUCHER PROMO =====
 const VOUCHER = [

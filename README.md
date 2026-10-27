@@ -22,6 +22,15 @@ Buka `index.html` langsung di browser. Semua file sudah termasuk (CSS sudah di-b
 
 ## Fitur utama
 
+### 0. Pengalaman jajan ala aplikasi food delivery
+- **Rail "Lagi rame di kantin"** berisi 6 menu terlaris dengan peringkat #1–#6, badge, rating, dan tombol tambah langsung. Bisa digeser dengan tombol ‹ › atau swipe di HP.
+- **Stepper qty di kartu menu**: setelah menu ditambahkan, tombol "Tambah" berubah menjadi kontrol − / qty / + supaya siswa bisa atur jumlah tanpa membuka keranjang.
+- **Filter + urutkan**: chip kategori menampilkan jumlah menu; tersedia urutan Rekomendasi, Paling laris, Termurah, Termahal, dan Rating tertinggi.
+- **Animasi mikro**: foto produk terbang ke ikon keranjang, badge berdenyut, toast dengan tombol **Lihat** untuk langsung membuka keranjang.
+- **Status kantin hidup**: indikator buka/tutup, hitung mundur ke istirahat berikutnya, dan progress bar yang diperbarui tiap detik.
+- **Keranjang pintar**: pilih **Ambil di kantin / Antar ke kelas**, isi kelas, lihat estimasi waktu siap, dan dapatkan saran menu viral saat keranjang masih kosong.
+- Semua tetap **mobile-first**: target sentuh besar, teks harga menonjol, dan panel keranjang bawah yang nyaman di HP.
+
 ### 1. Tambah Ulasan
 - Tombol **✍️ Tambah Ulasan** di bagian Ulasan membuka formulir (nama, rating bintang, isi ulasan).
 - Ulasan tersimpan di `localStorage` browser (*maksimal 50*), langsung tampil dengan label **"Ulasan Baru"**, dan ikut menambah rata-rata rating.

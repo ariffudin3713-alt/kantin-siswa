@@ -170,6 +170,50 @@ if (w3) {
   cek("tablet: 6 foto per halaman", d3.querySelectorAll("#grid-galeri button").length === 6);
 }
 
+// ---------- FITUR INTERAKSI BARU ----------
+const w6 = jalankan(390);
+if (w6) {
+  const d6 = w6.document;
+  cek("trending: 6 menu terlaris tampil", d6.querySelectorAll("#trending-menu article").length === 6);
+
+  const chip = d6.querySelector("#kategori .chip-count");
+  cek("filter: chip menampilkan jumlah menu", chip && chip.textContent === "45", chip ? chip.textContent : "kosong");
+
+  const urut = d6.querySelector("#urutkan");
+  urut.value = "murah";
+  urut.dispatchEvent(new w6.Event("change", { bubbles: true }));
+  cek("sort termurah: menu termurah di awal", d6.querySelector("#daftar-menu article h3").textContent === "Tempe Goreng", d6.querySelector("#daftar-menu article h3").textContent);
+
+  const tambah = d6.querySelector("#daftar-menu [data-tambah]");
+  const idTambah = tambah.dataset.tambah;
+  tambah.dispatchEvent(new w6.Event("click", { bubbles: true }));
+  const stepper = d6.querySelector(`[data-stepper="${idTambah}"]`);
+  cek("stepper: muncul setelah tambah", stepper.classList.contains("tampil"));
+  cek("stepper: qty awal 1", stepper.querySelector("[data-step-qty]").textContent === "1");
+  cek("stepper: tombol tambah disembunyikan", tambah.classList.contains("tersembunyi"));
+  cek("estimasi: terisi setelah ada item", /menit/.test(d6.querySelector("#estimasi").textContent), d6.querySelector("#estimasi").textContent);
+
+  const plus = stepper.querySelector('[data-kartu="tbh"]');
+  plus.dispatchEvent(new w6.Event("click", { bubbles: true }));
+  cek("stepper: tombol + menambah qty", stepper.querySelector("[data-step-qty]").textContent === "2");
+
+  const kur = stepper.querySelector('[data-kartu="kur"]');
+  kur.dispatchEvent(new w6.Event("click", { bubbles: true }));
+  kur.dispatchEvent(new w6.Event("click", { bubbles: true }));
+  cek("stepper: habis mengembalikan tombol tambah", !stepper.classList.contains("tampil") && !tambah.classList.contains("tersembunyi"));
+
+  const toastAksi = d6.querySelector("#toast-aksi");
+  cek("toast: tombol aksi tampil", !toastAksi.classList.contains("hidden") && toastAksi.textContent === "Lihat");
+  toastAksi.dispatchEvent(new w6.Event("click", { bubbles: true }));
+  cek("toast: aksi membuka keranjang", d6.querySelector("#drawer").getAttribute("aria-hidden") === "false");
+
+  const antar = d6.querySelector('#tipe-pesan [data-tipe="Antar ke kelas"]');
+  antar.dispatchEvent(new w6.Event("click", { bubbles: true }));
+  cek("keranjang: toggle antar ke kelas", d6.querySelector('#form-pesan input[name="tipe"]').value === "Antar ke kelas" && antar.classList.contains("aktif"));
+
+  cek("status: hitung mundur hidup", /^\d{1,2}:\d{2}/.test(d6.querySelector("#status-countdown").textContent), d6.querySelector("#status-countdown").textContent);
+}
+
 // ---------- RESIZE (mobile -> desktop) ----------
 (async () => {
 const w4 = jalankan(390);
