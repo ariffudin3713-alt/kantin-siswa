@@ -158,55 +158,7 @@ const PEMBAYARAN = [
     ket: "Scan QRIS dengan aplikasi apa pun: GoPay, OVO, DANA, ShopeePay, LinkAja, atau m-banking.",
     catatan: "Pindai QR code yang tertera di meja kasir.",
     aktif: true,
-  },
-  {
-    id: "gopay",
-    nama: "GoPay",
-    emoji: "🟢",
-    ket: "Bayar saldo GoPay lewat aplikasi Gojek atau GoPay.",
-    catatan: "Tersedia juga GoPayLater / PayLater untuk pesan di atas Rp 50.000.",
-    aktif: false,
-  },
-  {
-    id: "ovo",
-    nama: "OVO",
-    emoji: "🟣",
-    ket: "Bayar saldo OVO, termasuk OVO Points.",
-    catatan: "Scan QR OVO kasir, saldo dipotong otomatis.",
-    aktif: false,
-  },
-  {
-    id: "dana",
-    nama: "DANA",
-    emoji: "🔵",
-    ket: "Bayar saldo DANA atau kartu debit terhubung.",
-    catatan: "Pastikan nama akun DANA sesuai saat verifikasi kasir.",
-    aktif: false,
-  },
-  {
-    id: "shopeepay",
-    nama: "ShopeePay",
-    emoji: "🟠",
-    ket: "Bayar saldo ShopeePay dari aplikasi Shopee.",
-    catatan: "Tunjukkan kode QR pembayaran ke kasir.",
-    aktif: false,
-  },
-  {
-    id: "bank",
-    nama: "Transfer Bank",
-    emoji: "🏦",
-    ket: "Transfer ke virtual account BCA, BRI, Mandiri, atau BNI.",
-    catatan: "Kirim bukti transfer ke kasir agar pesanan langsung diproses.",
-    aktif: false,
-  },
-  {
-    id: "kartu",
-    nama: "Kartu Debit / Kredit",
-    emoji: "💳",
-    ket: "Terima Visa dan Mastercard (BCA, Mandiri, BNI).",
-    catatan: "Tersedia mesin EDC di kasir.",
-    aktif: false,
-  },
+  }
 ];
 
 // ===== ULASAN PELANGGAN (ganti dengan ulasan asli, minta izin dulu) =====
