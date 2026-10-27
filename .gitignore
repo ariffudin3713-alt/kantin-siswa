@@ -1,5 +1,6 @@
 # dependensi
 node_modules/
+.vercel/
 
 # env (jangan pernah di-commit)
 .env

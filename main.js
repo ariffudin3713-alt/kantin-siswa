@@ -859,7 +859,7 @@ $("#urutkan")?.addEventListener("change", (e) => {
   renderMenu();
   toast(`Urutan: ${e.target.options[e.target.selectedIndex].text}`, { durasi: 1800 });
 });
-$("#daftar-menu")?.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
   const b = e.target.closest("[data-tambah]");
   if (!b) return;
   const p = PRODUK.find((x) => x.id === b.dataset.tambah);

@@ -85,8 +85,33 @@ npm run test:runtime  # uji fungsi (butuh: npm install --no-save jsdom)
 - `localStorage` hanya menyimpan keranjang & tema (tanpa data sensitif).
 - Tidak ada API key/secret di kode. Lihat `SECURITY.md`.
 
-## Menerbitkan online (nilai +)
+## Deploy ke GitHub dan Vercel
 
-1. Buat repo baru di GitHub, lalu `git init`, `git add .`, `git commit -m "landing page"`, `git remote add origin <URL>`, `git push -u origin main`.
-2. Aktifkan GitHub Pages (Settings → Pages → branch `main`).
-3. Link Pages itulah yang dikumpulkan ke guru.
+Pastikan `.env.local` atau file `.env*` tidak pernah di-commit. Proyek ini tidak memerlukan environment variable untuk berjalan. Build Tailwind dijalankan otomatis oleh konfigurasi Vercel.
+
+### Push ke repository GitHub baru
+
+Buat repository kosong di GitHub, lalu jalankan dari folder proyek (ganti URL dengan URL repository Anda):
+
+```bash
+git init
+git branch -M main
+git add .
+git commit -m "Siapkan landing page Kantin Siswa"
+git remote add origin https://github.com/USERNAME/NAMA-REPO.git
+git push -u origin main
+```
+
+Jika folder ini sudah memiliki remote `origin`, gunakan `git remote set-url origin https://github.com/USERNAME/NAMA-REPO.git` sebelum push.
+
+### Deploy dengan Vercel CLI
+
+```bash
+npm install
+npm run build
+npx vercel login
+npx vercel link
+npx vercel --prod
+```
+
+Saat pertama kali menjalankan `npx vercel link`, pilih akun/team dan proyek yang sesuai. Setelah proyek GitHub diimpor ke Vercel, push ke branch yang terhubung akan memicu deployment preview; merge/push ke production branch akan memicu production deployment.
