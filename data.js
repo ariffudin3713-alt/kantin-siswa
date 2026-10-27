@@ -30,8 +30,8 @@ const USAHA = {
   libur: [0, 6], // hari libur (0 = Minggu, 6 = Sabtu, 1 = Senin, ...)
   // Jam istirahat sekolah — dipakai untuk indikator status "Buka / Jam Pelajaran"
   istirahat: [
-    { nama: "Jam Istirahat 1", mulai: "09:30", selesai: "09:50" },
-    { nama: "Jam Istirahat 2", mulai: "12:00", selesai: "12:20" },
+    { nama: "Jam Istirahat 1", mulai: "09:00", selesai: "09:15" },
+    { nama: "Jam Istirahat 2", mulai: "12:00", selesai: "12:30" },
   ],
   jamText: "Senin–Jumat, 07.00–16.00",
   jadwal: [
